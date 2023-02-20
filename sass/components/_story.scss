@@ -1,0 +1,98 @@
+.story {
+    width: 75%;
+    margin: 0 auto;// block element inside another blok element 0=top-bottom/auto=left-right
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6);
+    border-radius: $boder-radius-small;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+
+    //per te rikthyer te gjithe elementet te pa skewX(-12) perdoret kjo metode
+    //all direct childs
+
+    // & > * {
+    //     transform: skewX(12deg);  //e kemi nje transform going on tek &__shape dhe merr precedence//dhe nuk ka nje forme per te patur dy transform aplying
+    // }
+
+        @include respond(tab-port) {
+            width: 100%;
+            padding: 4rem;
+            padding-left: 7rem;
+        }
+
+        @include respond(phone) {
+            transform: skewX(0);
+        }
+
+
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        -webkit-shape-outside:circle(50% at 50% 50%); // ne safari punon vetem me kete
+        shape-outside: circle(50% at 50% 50%); //defines where the content flows around the element
+        //first number is the radius of the circle (50% of the height and width element)(at 50% 50% do te thote qwe do jete ne qender horizontalisht dhe vertikalisht)
+        //qe kjo te funksionoje duhet qe elementi te jete floating/ dhe te kete definet diamentions like width height
+
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%); //ben qe elementi te duket si nje rreth
+
+        // per ti dhene hapesire nje elementi eshte mire te mos i ngacmosh margin
+        transform: translateX(-3rem) skew(12deg);// transform qe shtuam duhet ta shtojme tek padding left me 3 rem
+        position: relative;
+
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
+    }
+    
+
+    &__img {
+        height: 100%;// do te zere 100% te hapesires se elementit
+        transform: translateX(-4rem) scale(1.4);//efekti i zmadhimit eshte state original i imazhit
+        transition: all .5s;
+    }
+
+    &__text {
+        transform: skewX(12deg);
+
+        @include respond(phone) {
+            transform: skewX(0);
+        }
+    }
+
+    &__caption {
+        // per te qenderzuar nje tekst mbi nje container
+        position: absolute;
+        top: 50%;
+        left: 50%;
+           //transform: translate(-50%, -50%); per ta vene ne qender
+        transform: translate(-50%, 20%);// me 0 shkon poshteme 20 shkon akoma me psohte
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;//per ta bere te padukshme
+        transition: all .5s;
+        backface-visibility: hidden; //per te eleminuar nje shake te vogelne fund te transitionit
+    }
+
+// what we hover and what we want to change
+    &:hover &__caption {
+       opacity: 1; //merr ngjyren qe ka
+       transform: translate(-50%, -50%); //qe te vije ne qender
+       backface-visibility: hidden; //per te eleminuar nje shake te vogelne fund te transitionit
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);// kur behet hover shkon ne gjendjen normale (pra nuk e zvogelojme)
+        filter: blur(3px) brightness(80%); 
+        //efekti blur sa me e madhe vlera aq me blur eshte
+        //cdo vlere poshte 100% eshte me darker dhe mbi 100% eshte me brighter
+    }
+
+}

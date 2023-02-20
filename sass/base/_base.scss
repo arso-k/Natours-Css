@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+// nuk eshte typography por eshte global definition se sa eshte 1rem // this is what rem is
+html {
+    font-size: 62.5%; //1rem=10px; 10px/16px=62.5%
+
+    //formati 2 me mixin
+    // @include respond(phone) { font-size: 50%; }  
+    //duke qene se do te aplikohen te dyja nese  width do jete 900 dhe 600 dhe do jete i njejti font 50% nuk na duhet dhe mbajme vetem ate te tab-port
+
+    @include respond(tab-land) { // width < 1200?
+        font-size: 56.25%; } // 1rem = 9px; 9/16 =50%
+    //conflictohen me njera tjetren 900 me 600 dhe kur kemi te dhene width 500 qe i perfshin te dy me kete renditje do te vendoset stili i 600 i fundit i renditur
+    @include respond(tab-port) { //width < 600?
+        font-size: 50%;  } //1rem = 8px , 8/16 = 50% //psh nje buton  4rem nuk do jete me 40px por ne tablet do te jete 32 px///
+
+    @include respond(big-desktop) { //width < 1200?
+        font-size: 75%; } //1rem =12px; 12/16 = 75%
+    
+    // @include respond(phone) { //width < 600?
+    //     font-size: 30%;  } //1 rem = 4.8px  //shembull
+
+}
+
+// pjesa tjeter shkon tek folderi typography related
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0; 
+    } 
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}

@@ -1,0 +1,66 @@
+
+.header {
+    // height: 95vh; 
+    height: 85vh;
+    background-image: linear-gradient(
+    to right bottom, 
+    rgba($color-primary-light, 0.8),  
+    rgba($color-primary-dark, 0.8)),
+    url(../img/hero-small.jpg);//  funksionon vetem ne sass qe ti vendos ngjyren me variabel dhe gradientin vec
+    background-size: cover;
+    background-position: top; 
+    position: relative; 
+
+    // -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);//PREFICED for all broswers
+    // clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+    //me kete menyre ne do te testojme nese suportohet nga te gjitha broswerat dhe do te aplikohet ajo qe suportohet
+   //feature query// nese eshte e suportuar height 95 override the height of 85
+   //ne polygon (mund te vendosim vlera random ose dhe thjesht vlera 00)
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+        height: 95vh;
+    }
+
+    // responsive Images device resolution 
+    //apple reference for resolution screen kur pixel density eshte (2x)
+    // dhee and (min-width:600px) dhe kur width eshte me i madh se 600px do te shfaqet nje imazh me rezolucion te madh jo me pare
+    // nese vendosim nje "," pas kushtit eshte ne vend te "or"
+    // -webkit-min-device-pixel-ratio: 2/ ne ate kohe nuk suportohej nga safari// pixel ratie e nje device duhet te jete se paku 2 (2x)
+    
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),  
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+            only screen and (min-width: 125em) {
+                background-image: linear-gradient(
+                to right bottom, 
+                    rgba($color-primary-light, 0.8),  
+                    rgba($color-primary-dark, 0.8)),
+                    url(../img/hero.jpg);
+    }
+   
+
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);//PREFICED for all broswers
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); 
+    }
+
+
+    &__logo-box{
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    &__logo {
+        height: 3.5rem;
+    }
+    
+    &__tex-box{
+        @include absCenter;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%); 
+        text-align: center;
+    }
+}

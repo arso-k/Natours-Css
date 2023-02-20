@@ -1,0 +1,111 @@
+//is a style very specific to the homepage. So nowhere else on this entire website, even if it grows to many more pages, nowhere else there will be a section-about, at least not one similar to this, and so this is a specific style of our homepage, and this is why I'm putting it right here, so section-about.
+
+.section-about{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh;
+    
+    @include respond(tab-port) {
+        padding: 20rem 0;
+    }
+}
+
+.section-features {
+    //modern spacy white space in websites
+    padding: 20rem 0; 
+    // bacgroud image whith gradiend green blur
+    background-image: linear-gradient(
+    to right bottom, 
+    rgba($color-primary-light, 0.8),  
+    rgba($color-primary-dark, 0.8)),
+    url(../../img/nat-4.jpg);
+    background-size: cover; //it coversd the entire section
+
+    margin-top: -10rem;//per ta ngritur me lart dhe te mbulojme pixelat e bardha nga secioni me lart
+
+
+    // per ti dhene efektin skew mund te behet dhe me clip-path por eshte me thjesht me kete menyre duke i dhene efektin skew te gjithe sectionit dhe duke BERE TE KUNDERTEN PER direct-CHILD 
+    transform: skewY(-7deg);// -7 shkon nga poshte lart krahu orar
+
+    // selecton te gjithe direct childs
+    // .section-features > * ne kte rast eshte vetem  divi me classen row
+    & > * {
+        transform: skewY(7deg); //ben qe rreshti te jete ne gjendjen fillestare
+    }
+
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
+}
+
+.section-tours {
+    background-color: $color-grey-light-1;
+    padding: 25rem 0 15rem 0;
+    margin-top: -10rem;
+
+    @include respond(tab-port) {
+        padding: 20rem 0 10rem 0; 
+    }
+}
+
+.section-stories {
+    position: relative;
+    padding: 15rem 0;
+
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
+}
+
+.section-book {
+    padding: 15rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+
+    
+}
+
+
+.book {
+    //kur duam te kete dy backgrounde mjaftojme ti vendosim bashke linear gradiend dhe url e imazhit
+    //duke mos percaktuar drejtim por mjafton te specifikojme kendiin 90deg ore 105 etj per te percaktuar drejtimin e gradientit
+    //duke i vendosur % ne fund te cdo ngjyre ne percaktojme fushen qe do zere secila ngjyre
+    //ne momentin qe i vendosim perqindje te barabarta si ajo e 50% do nderpriten ne nje vije te drejte e cila quhet solid color grsadient
+    background-image: linear-gradient(105deg, 
+                            rgba($color-white, .9) 0%, 
+                            rgba($color-white, .9) 50%, 
+                            transparent 50%), 
+    url(../img/nat-10.jpg);
+
+    background-size: 100%; //100% eshte e njejta gje me cover 
+    //50% do ndahet ne 4 foto qe perseriten// sa me uletr aq me shume perseritet/ 150% do te zmadhohet
+    //kur ekrani zvogelohet me vleren 100% imazhi perseritet dhe me cover jo
+    border-radius: $boder-radius-small;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+
+    @include respond(tab-land) {
+        background-image: linear-gradient(105deg, 
+        rgba($color-white, .9) 0%, 
+        rgba($color-white, .9) 65%, 
+        transparent 65%), url(../img/nat-10.jpg);
+        background-size: cover;
+    }
+
+    @include respond(tab-port) {
+        background-image: linear-gradient(to right, 
+        rgba($color-white, .9) 0%, 
+        rgba($color-white, .9) 100%), url(../img/nat-10.jpg);
+    }
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+
+        @include respond(tab-land) {
+            width: 65%;
+        }
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+    }
+}

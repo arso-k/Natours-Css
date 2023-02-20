@@ -1,0 +1,24 @@
+.bg-video {
+    // position relative vendoset section-stories nr folderin home qe e permban
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;//duke qene se mbivendoset mbi butonin i vendosim nje vlere shume te vogel
+    opacity: .15; //per ta bere videon te zbehte
+
+    // per ta bere videon qe te zere vetem dhe ter hapesiren e storyt tone
+
+    &__content {
+        height: 100%;
+        width: 100%;//serisht nuk e mbulon te ter sectionin story qe kemi ne
+        object-fit: cover; //e ngjashme me background-cover per te bere elementin te zere ter hapesiren e elementit prind pa e humbur aspect ration  funksionon dhe me imazhet 
+        // nese ne vend te cover dote vendosnim fill nuk do e ruante aspect ration
+
+        overflow: hidden; //per te eleminuar nje gabim te vogel qe ze anen e background me shume sec duhet
+
+
+        
+    }
+}

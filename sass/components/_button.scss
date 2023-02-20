@@ -1,0 +1,111 @@
+.btn {
+    //.btn,
+    // .btn:link, 
+    // .btn:visited
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none; 
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: $boder-radius-medium;
+        transition: all .2s; 
+        position: relative; 
+        // font-size: 1.6rem;
+        font-size: $default-font-size;
+        
+        // kur perdorim button si element ato vijne me stile default qe duhen hequr qe te marin stilin qe duam ne
+        // change for the <button> element
+        border: none;
+        cursor: pointer;
+        //arsyeja pse asnje nga stilet nuk i aplikohen <button> eshte sepse keto stile i aplikohen vetem gjendjes visited dhe nje linku <a> prandaj duhet perfshire dhe &(qe nenkupton vete buttonin )
+    }
+
+    
+    // .btn:hover
+    &:hover{
+        transform: translateY(-.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        
+        // .btn:hover::after
+        // &:hover::after  
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);  
+            opacity: 0;
+        }
+    }
+
+    //focus dhe active do duken njesoj (per te mos hequr stilin default te focus)
+    &:active,
+    &:focus { 
+        outline: none;
+        transform: translateY(-.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2); 
+    }
+
+    &::after{
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: $boder-radius-medium;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; 
+        transition: all .4s;
+    }
+    // btn--white
+    &--white{
+        background-color: $color-white;
+        color:$color-grey-dark-1; 
+
+        // &--white::after 
+        &::after{
+            background-color: $color-white; 
+        }
+    }
+    // btn--green
+    &--green{
+        background-color: $color-primary;
+        color:$color-white; 
+
+         
+        &::after{
+            background-color: $color-primary; 
+        }
+    }
+
+   
+    
+    &--animated{
+        animation: moveInBottom .5s ease-out .75; 
+        animation-fill-mode: backwards; 
+    }
+}
+
+.btn-text{
+    &:link, 
+    &:visited{
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px; // 3 pixel eshte shume e vogel si njesi dhe nuk do beje diferencen nese e bejme ne rem
+        transition: all .2s;
+    }
+
+    &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15 );
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,68 @@
+.row {// width: 1140px; eshte shume statike// width: 114rem;1140px/10-> rem /e ben pak me resposive// max width e ben qe te zer 100%te viewport nese ekrani eshte me i vogel dhe kur e zmadhojme do te zere deri ne 114rem. // max-width: 114rem;
+    max-width:$grid-width;// background-color: #eee;// trick to center block elements inside of another block element.  Margin on top and of the bottom is zero, and left and right is auto. //Browser, when rendering the page, will automatically figure out the margin that we want on the left and on the right side. And since it's both set to auto, it means that left and right will be the same, and CSS will automatically calculate the left margin and the right margin, and they will be the same, and so of course, the element will be centered.
+    margin: 0 auto;// margin-bottom: 80px;// margin-bottom:$gutter-vertical;// te gjitha rreshtat vec te fundit
+   
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+       
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        } 
+    }
+
+    @include respond(tab-port) {
+        max-width: 50rem;
+        padding: 0 3rem;
+    }
+
+    // mund te bejme nesting te rows dhe cols
+    @include clearfix;// atribute slector/ selecton te gjithe elementet qe kane atributin e shkruar me vleren e shkruar [alt="logo"]{...}// mund te selectojme dhe ne baze te class dhe te mos jete e barabarte specifike [class ="col-1-of-2"]{...}// ^= class qe fillom me me col  [class ^="col-"] //*= select any class that contain   //$=  any class that end/  
+
+    [class ^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            } 
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important; 
+            //te gjitha kolonat do te kene width 100%
+        }     
+    }
+
+    
+
+
+    .col-1-of-2{
+        width: calc((100% - #{$gutter-horizontal}) / 2);  
+    }
+
+    .col-1-of-3{
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    
+        // background-color: orangered; // float: left;// &:not(:last-child) {//     margin-right: $gutter-horizontal;// } nuk ja vlen te perserisesh te njejtin kod 
+    } 
+
+    .col-2-of-3{
+        width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4{
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4{
+        width: calc(2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4{
+        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
+    }
+}
+

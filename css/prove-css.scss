@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  //this are variables
+  $color-primary: #f9ed69; //yellow color
+  $color-seconday: #f08a5d; //orange color
+  $color-tertiary: #b83b5e; //pink color
+  $color-text-dark: #333; //dark blue
+  $color-text-light: #fff;
+  $width-button: 150px;
+  
+  nav {
+    margin: 30px;
+    background-color: $color-primary; 
+  /*  forma e re e clear fix */
+    &::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+  
+  /* keshtu behet clear fix normal
+  .clearfix::after {
+    content: "";
+     clear: both;
+     display: table;} */
+  
+  
+  .navigation {
+    list-style: none;
+    float: left; 
+    
+  /* nestin usually will be like this 
+    .navigation li{.
+    .navigation li:firs-child{...
+    usually get writen like this li:first-child{.. we use the operator "&" */
+    li {
+      display: inline-block;
+      margin-left: 30px;
+      
+      &:first-child {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: $color-text-dark
+      }
+    }
+  }
+  
+  .buttons {
+    float: right;
+  }
+  // mund te shkruash disa modifikator njheresh nese do kene te njeten stil
+  .btn-main:link,
+  .btn-hot:link {
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 100px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: $width-button;
+    color: $color-text-light;
+   }   
+  
+/* btn-main:link */
+ /* btn-main:hover */
+  .btn-main{
+    &:link {
+      background-color: $color-seconday;
+    }
+    
+    &:hover {
+      background-color: darken($color-seconday, 15%);
+    }
+    //   funksion i gatshme per te kompiluar ngjyra te reja pa i shkruajtur nje per nje me te njejtin variabel
+  }
+  .btn-hot{
+    &:link {
+      background-color: $color-tertiary;
+    }
+    
+    &:hover {
+      background-color: lighten($color-tertiary, 15%);
+    }
+    //   funksion i gatshme per te kompiluar ngjyra te reja pa i shkruajtur nje per nje me te njejtin variabel
+  }
+  

@@ -1,0 +1,97 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-grey-dark-1;
+    
+    
+    // box-sizing: border-box; e vendosim ne base/base mqs ska te beje me typography
+}
+
+.heading-primary {
+    color:$color-white;
+    text-transform: uppercase;
+
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+
+    
+    &--main {
+        display: block; 
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+    
+        animation-name: moveInLeft; 
+        animation-duration: 1s;
+        animation-timing-function: ease-out; 
+
+        //get rid of letter spacing
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
+    }
+    
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation: moveInRight 1s ease-out;    
+        
+        @include respond(phone) {
+            letter-spacing: .5rem;
+            
+        }
+    }
+}
+
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    // per te bere textin qe te kete efectin gradient
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    // duke qene se eshte bllok element ze 100% te widthit, duhet te mbuloje vetem textin
+    display: inline-block;
+    // per ti dhene ngjyren gradient textit ( i bejme clip)
+    -webkit-background-clip: text;
+    // duhet shtuar per compatibilitet tek broswerat e tjere
+    background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    // per ti dhene efetin qe leviz ne hover skewY reshket lart skitch dhe skewX rreshket djathtas/ scale e zmadhon 110%
+    transition: all .2s;
+ 
+    @include respond(tab-port) {
+        font-size: 3rem;
+    }
+
+    @include respond(phone) { // duhet e dyta sepse eshte me e vogel
+        font-size: 2.5rem;
+    }
+    &:hover{
+        transform: skewY(2deg) skewX(15deg) scale(1.1);
+        // 5 ne x dhe 1 ne y dhe 2 rem of blur color black dhe opacity eshte .2(20%) 
+        text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+    }
+
+}
+
+.heading-tertiary{
+    // font-size: 1.6rem;
+    font-size: $default-font-size;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph{
+    // font-size: 1.6rem;
+    font-size: $default-font-size;
+    // eshte shkurtimisht cdo gje tjeter pervec last child do te marri stilet qe do ti shtojme
+    &:not(:last-child){
+        margin-bottom: 3rem;
+    }
+}

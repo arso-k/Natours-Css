@@ -1,0 +1,134 @@
+.form {
+
+    &__group:not(:last-child) {
+            margin-bottom: 2rem;
+
+    }
+
+    &__input {
+        font-size: 1.5rem;
+        font-family: inherit;//per inputet brosweri nuk trashegon te njejten font-family duhet specifikuar
+        color: inherit;//e njejta gje dhe per ngjyren (merr default te zeze)
+        padding: 1.5rem 2rem;
+        // kur stilojme buttonat dhe format i japim me shume padding anash
+        border-radius: 2px;
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent; //per te eleminuar levizjen kur eshte ne fokus
+        width: 90%;
+        display: block;
+        transition: all .3s; //animim per vijen me ngjyre
+
+        @include respond(tab-port) {
+            width: 100%;
+            
+        }
+
+        // state--focus fusha input e clikuar 
+        //kur ndodhemi ne element te heqim fokusin default qe jep brosweri dhe tas tilojme si duam ne 
+        //fokusi eshte i rendesishem kur navigojme me tastiereper te kuptuar qe ndodhemi ne nje fushe prandaj nuk duhet lene outline: none;
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: 3px solid $color-primary;
+        }
+
+        //stilimi kur ndodhemi ne fushen input(focus) dhe rezultati eshte invalid
+        &:focus:invalid {
+            border-bottom: 3px solid $color-secondary-dark;
+        }
+
+
+        //vetem ne broswerat mire
+        //
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-2;
+            
+        }
+    }
+
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block; //per te perdorur box properties si margin left/top mbi nje element duhet qe te jene display block
+
+        transition: all .3s;//animim per labelat 
+    }
+
+    // input dhe label jane siblings dhe jo parent child related
+    //adjacent(+)sibling selecton vetem sibling e pare qe vjen direkt pas sibling te selectuar si ne kete rast label vjen direkt pas input
+    //nese renditja do te ishte ndryshe nuk do te funksiononte
+    //general (~) sibling selector nese siblings kane disa shtresa ndermjet tyre
+
+    &__input:placeholder-shown + &__label {
+        opacity: 0;// i vendosim dhe opacitin 0 per ta animuar me pas
+        visibility: hidden;// megjithse vetem me visibility hidden elementi do te zhdukej gjithesesi
+        transform: translateY(-4rem); //per ta pare sesi funksionon beje opacityn dhe vizibility coment dhe shiko sesi behet transicioni -4rem shkon poshte nga pozicvioni fillestar
+    }
+
+
+
+    &__radio-group {
+        width: 49%; //per ti vendosur ne nje rresht
+        display: inline-block;
+
+        @include respond(tab-port) {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+    }
+
+    //per te zhdukur default radio buttons
+    &__radio-input{
+        opacity: 0;
+    } 
+
+    &__radio-label {
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative;//prind i radio-button
+        padding-left: 4.5rem;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__radio-button {
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block; //qe propertite e height dhe width te punojne duhet qe te jene inline block element 
+        position: absolute;//megjithese absolute sherben si prind i ::after mjafton qe eshte e specifikuar
+        left: 0;
+        top: -.4rem;
+
+
+        //per te bere rrethin e plote brenda radio butonit
+        &::after {
+            content: "";//sude element duhet te specifikojme gjithmone contetn dhe display block
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;//per ta bere rreth height dhhe width njesoj dhe border radius 50%
+            @include absCenter;
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);//mos harro presjen ne mes
+            // background-color: $color-primary;
+            opacity: 0;
+            transition: opacity .3s;//duke qene se do te ndodhe vetem ky animim
+        }
+    }
+
+    //per te selectuar &__radio-button(ne gjendjen after(checked) i cili eshte child i &__radio-lavel e cila eshte sibling me &__radio-input(ne gjendjen checked)
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+        opacity: 1;
+    }
+
+}
