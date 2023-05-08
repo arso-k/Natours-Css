@@ -1,9 +1,20 @@
 # Natours-Css
-##### Course: [Advanced CSS and SASS ](https://www.udemy.com/advanced-css-and-sass/)
-## Author: Jonas Schmedtmann
+##### Course: Advanced CSS and SASS 
+#### Author: Jonas Schmedtmann
 ## Student: Arsonela Lalaj
 ##### [See the live demo ](https://arso-k.github.io/Natours-Css/)
 ---
+Natours: Travel agency website
+* Uses only HTML and CSS
+   * Features:
+      * Float Layout
+      * Responsive images in HTML and CSS
+      * Advanced CSS animations with @keyframes, animation, and transition
+      * CSS architecture: component-based design, BEM, etc.
+      * Advanced responsive design: media queries
+      * SVG images and videos in HTML and CSS: build a background video effect
+      * Utilizes Sass: global variables, architecting CSS, managing media queries
+* Ide: vscode
 
 ## Tools used in this course:
 
